@@ -3,7 +3,8 @@ const _ = require('lodash'); // helper library that helps walk through collectio
 const {
 	GraphQLObjectType,
 	GraphQLString,
-	GraphQLInt
+	GraphQLInt,
+	GraphQLSchema
 } = graphql;
 
 const users = [
@@ -40,3 +41,7 @@ const RootQuery = new GraphQLObjectType({
 // everything else is definging the type of data.
 // parentValue is worthless - just go with it
 // args is important
+
+module.exports = new GraphQLSchema ({
+	query: RootQuery 
+});
