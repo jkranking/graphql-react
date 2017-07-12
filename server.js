@@ -6,11 +6,11 @@ const app = express();
 
 
 app.use('/graphql', expressGraphQL({
-	schema, // => this is schema: schema (es6 syntax)
+	schema,
 	graphiql: true
 }))
 
-app.listen(4000, ()=> {
+app.listen(4000, () => {
 	console.log('listening');
 });
 

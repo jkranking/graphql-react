@@ -1,5 +1,6 @@
 const graphql = require('graphql');
-const _ = require('lodash'); // helper library that helps walk through collections of data (basically active record)
+const axios = require('axios')
+// const _ = require('lodash')
 const {
 	GraphQLObjectType,
 	GraphQLString,
@@ -7,10 +8,9 @@ const {
 	GraphQLSchema
 } = graphql;
 
-const users = [
-	{ id: '23', firstName: 'Bill', age: 20},
-	{ id: '47', firstName: 'Samantha', age: 21}
-]
+// const users = [
+// 	{id: '23', firstName: 'Mark', age: 25}
+// ]
 
 // instructs graphql on what a user object looks like
 const UserType = new GraphQLObjectType({
@@ -29,9 +29,9 @@ const RootQuery = new GraphQLObjectType({
 			type: UserType,
 			args: {id: {type: GraphQLString }},
 			resolve(parentValue, args) {
-				// just working with hard coded data for now defined up top- no db
-				return _.find(users, { id: args.id })
-
+				// return _.find(users, { id: args.id })
+				return axios.get(`http://localhost:3000/users/23`)
+					.then(resp => resp.data);
 			}
 		}
 	}
